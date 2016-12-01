@@ -67,6 +67,24 @@ void autoFire()
 	motor(rightLift) = -127;
 	wait1Msec(2000);
 }
+void autoTurn(bool dir, int sec)// write true for right and false for left
+{
+	if(dir){
+	motor(frontLeft) = 100;
+	motor(frontRight) = 0;
+	motor(backLeft) = 100;
+	motor(backRight) = 0;
+	sec*=1000;
+	wait1Msec(sec);}
+	else{
+	motor(frontLeft) = 0;
+	motor(frontRight) = 100;
+	motor(backLeft) = 0;
+	motor(backRight) = 100;
+	sec*=1000;
+	wait1Msec(sec);
+	}
+}
 void auto1()
 {
 	autoDriveEnc(150, 2);
@@ -111,10 +129,6 @@ task starLaunch()
 	{
 		shift1 = false;
 	}
-}
-task cubeLaunch()
-{
-
 }
 //////////////////actual runing
 task autonomous()
