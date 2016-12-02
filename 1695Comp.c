@@ -56,6 +56,7 @@ void autoDriveEnc(float speed, int enc)
 	int initialEncoder = getMotorEncoder(backRight);
 	while (abs(getMotorEncoder(backRight) - initialEncoder) < abs(enc)){
 		autoDrive(speed);
+		autoStop();
 	}
 }
 void autoFire()
@@ -87,10 +88,9 @@ void autoTurn(bool dir, int sec)// write true for right and false for left
 }
 void auto1()
 {
-	autoDriveEnc(150, 2);
-	autoDriveEnc(150, 5);
+	autoDrive(150, 2);
 	autoFire();
-	autoDriveEnc(-150, 2);
+	autoDrive(-150, 2);
 }
 task teleDrive()
 {
